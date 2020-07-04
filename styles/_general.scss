@@ -7,13 +7,6 @@
 	src: url('./fonts/LoveYaLikeASisterSolid.woff') format('woff');
 }
 body {
-	background-color: red;
+	background-image: url('../images/background.jpg');
 	font-family: 'Sister', cursive;
-	p {
-		color: black;
-		font-size: 24px;
-	}
-	h1 {
-		font-family: 'Sister Solid';
-	}
 }

@@ -1,0 +1,7 @@
+.game {
+	display: flex;
+	flex-flow: column;
+	@include media-md-up {
+		flex-flow: row;
+	}
+}
