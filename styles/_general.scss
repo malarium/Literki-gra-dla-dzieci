@@ -1,0 +1,19 @@
+@font-face {
+	font-family: 'Sister';
+	src: url('./fonts/LoveYaLikeASister.woff') format('woff');
+}
+@font-face {
+	font-family: 'Sister Solid';
+	src: url('./fonts/LoveYaLikeASisterSolid.woff') format('woff');
+}
+body {
+	background-color: red;
+	font-family: 'Sister', cursive;
+	p {
+		color: black;
+		font-size: 24px;
+	}
+	h1 {
+		font-family: 'Sister Solid';
+	}
+}
