@@ -1,8 +1,11 @@
 .game {
 	display: flex;
 	flex-flow: column;
+	align-items: center;
+	justify-content: space-around;
 	@include media-md-up {
 		flex-flow: row;
+		align-items: unset;
 	}
 	.image-container {
 		position: relative;
@@ -23,8 +26,11 @@
 	.blanks {
 		cursor: pointer;
 		font-family: 'Sister Solid';
-		font-size: 5rem;
 		display: flex;
+		font-size: 3rem;
+		@include media-md-up {
+			font-size: 5rem;
+		}
 		p {
 			margin: 15px;
 			-webkit-text-stroke-width: 1px;
@@ -32,24 +38,35 @@
 		}
 	}
 	.blanks {
-		position: relative;
+		height: 366px;
 		width: auto;
-		min-width: 400px;
-		height: auto;
+		min-width: 75vw;
+		background-size: cover;
+		position: relative;
 		padding-left: 25px;
 		padding-right: 25px;
 		background-image: url('../images/cloud.svg');
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
+		@include media-md-up {
+			width: auto;
+			min-width: 400px;
+			height: auto;
+		}
 		&-letters {
 			width: 100%;
 			height: 50%;
+			margin-bottom: 3vh;
 			align-items: center;
 			justify-content: center;
 			align-self: flex-end;
 			display: flex;
-			align-items: flex-end;
+			align-items: center;
+			@include media-md-up {
+				align-items: flex-end;
+				margin-bottom: 0;
+			}
 		}
 		&-btn {
 			cursor: pointer;
