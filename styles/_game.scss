@@ -32,11 +32,48 @@
 		}
 	}
 	.blanks {
-		width: 400px;
-		height: 100px;
-		border: 1px dashed black;
-		background-color: #f2f2f2;
-		align-items: center;
-		justify-content: center;
+		position: relative;
+		width: auto;
+		min-width: 400px;
+		height: auto;
+		padding-left: 25px;
+		padding-right: 25px;
+		background-image: url('../images/cloud.svg');
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		&-letters {
+			width: 100%;
+			height: 50%;
+			align-items: center;
+			justify-content: center;
+			align-self: flex-end;
+			display: flex;
+			align-items: flex-end;
+		}
+		&-btn {
+			cursor: pointer;
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			color: green;
+			font-size: 24px;
+			padding: 12px 12px 12px 15px;
+			border: 1px solid darkgreen;
+			border-radius: 50%;
+			transition: color 0.2s;
+			&:focus,
+			&:active {
+				outline: 0;
+			}
+			&:hover {
+				color: limegreen;
+			}
+			&--check {
+				top: 70px;
+				right: -10px;
+				padding: 8px 15px 10px 16px;
+			}
+		}
 	}
 }

@@ -36,18 +36,13 @@ const words = [
 		letters: ['Z', 'O', 'M', 'B', 'I'],
 	},
 ]
-const playWord = (nr) => {
-	var msg = new SpeechSynthesisUtterance(`${words[nr].word}`)
+const speak = (text) => {
+	var msg = new SpeechSynthesisUtterance(text)
 	var voices = window.speechSynthesis.getVoices()
 	msg.voice = voices[0]
 	window.speechSynthesis.speak(msg)
 }
-const saySingleLetter = (letter) => {
-	var msg = new SpeechSynthesisUtterance(letter)
-	var voices = window.speechSynthesis.getVoices()
-	msg.voice = voices[0]
-	window.speechSynthesis.speak(msg)
-}
+
 //wyświetl obraz
 const createPicture = (nr) => {
 	const pictureBox = document.querySelector('.image-container')
@@ -55,7 +50,7 @@ const createPicture = (nr) => {
 	pictureBox.style.backgroundImage = `url('./dist/images/${words[nr].image}')`
 	pictureBox.classList.add('animate__fadeInDown')
 	pictureBox.addEventListener('click', function () {
-		playWord(nr)
+		speak(words[nr].word)
 	})
 }
 
@@ -81,16 +76,56 @@ const createLetters = (nr) => {
 		let randomAnimation = animationArray[Math.floor(Math.random() * 3) + 1]
 		singleLetterContainer.classList.add('animate__animated', randomAnimation)
 		singleLetterContainer.addEventListener('click', function () {
-			saySingleLetter(letter)
+			speak(letter)
 			this.classList = ''
 			this.classList.add('animate__animated', 'animate__bounce')
+			setTimeout(() => {
+				this.classList = ''
+			}, 1000)
 		})
-
 		letterBox.appendChild(singleLetterContainer)
 	})
+	finalButton(nr)
 }
+const checkButton = () => {
+	const btn = document.querySelector('#blanks-btn')
+	btn.addEventListener('click', function () {
+		const blanks = document.querySelector('#blanks-letters')
+		if (blanks.textContent) {
+			speak(blanks.textContent)
+		} else {
+			speak('Przeciągnij literki do chmurki.')
+		}
+	})
+}
+
+function finalButton(nr) {
+	const btn = document.querySelector('#check-btn')
+	btn.addEventListener('click', function () {
+		const blanks = document.querySelector('#blanks-letters')
+		if (!blanks.textContent) {
+			speak('Przeciągnij literki do chmurki.')
+		} else if (blanks.childNodes.length !== words[nr].letters.length) {
+			speak('Użyj wszystkich literek')
+		} else {
+			if (blanks.textContent === words[nr].word) {
+				speak('Gratulacje! Jesteś świetny!')
+				setTimeout(() => {
+					location.reload()
+				}, 3000)
+			} else {
+				speak('Ojej, coś się pokręciło. Spróbuj przestawić niektóre literki.')
+			}
+		}
+	})
+}
+
 const wordsAmount = words.length
 let randomWord = Math.floor(Math.random() * wordsAmount)
 createPicture(randomWord)
 createLetters(randomWord)
-dragula([document.getElementById('letters'), document.getElementById('blanks')])
+checkButton()
+dragula([
+	document.getElementById('letters'),
+	document.getElementById('blanks-letters'),
+])
