@@ -15,6 +15,26 @@ const words = [
 		image: 'dynia.png',
 		letters: ['D', 'Y', 'N', 'I', 'A'],
 	},
+	{
+		word: 'OSA',
+		image: 'osa.svg',
+		letters: ['O', 'S', 'A'],
+	},
+	{
+		word: 'ROBOT',
+		image: 'robot.png',
+		letters: ['R', 'O', 'B', 'O', 'T'],
+	},
+	{
+		word: 'SER',
+		image: 'ser.svg',
+		letters: ['S', 'E', 'R'],
+	},
+	{
+		word: 'ZOMBI',
+		image: 'zombi.svg',
+		letters: ['Z', 'O', 'M', 'B', 'I'],
+	},
 ]
 const playWord = (nr) => {
 	var msg = new SpeechSynthesisUtterance(`${words[nr].word}`)
@@ -62,21 +82,15 @@ const createLetters = (nr) => {
 		singleLetterContainer.classList.add('animate__animated', randomAnimation)
 		singleLetterContainer.addEventListener('click', function () {
 			saySingleLetter(letter)
-			// this.classList = ''
-			// this.classList.add('animate__animated', 'animate__bounce')
-		})
-		singleLetterContainer.addEventListener('mouseenter', function () {
 			this.classList = ''
 			this.classList.add('animate__animated', 'animate__bounce')
-		})
-		singleLetterContainer.addEventListener('mouseleave', function () {
-			this.classList.remove('animate__bounce')
 		})
 
 		letterBox.appendChild(singleLetterContainer)
 	})
 }
-createPicture(0)
-createLetters(0)
+const wordsAmount = words.length
+let randomWord = Math.floor(Math.random() * wordsAmount)
+createPicture(randomWord)
+createLetters(randomWord)
 dragula([document.getElementById('letters'), document.getElementById('blanks')])
-//Powiedz słowo
