@@ -4,6 +4,7 @@
 	align-items: center;
 	justify-content: space-around;
 	max-height: 100vh;
+	overflow: hidden;
 	@include media-md-up {
 		flex-flow: row;
 		align-items: unset;
