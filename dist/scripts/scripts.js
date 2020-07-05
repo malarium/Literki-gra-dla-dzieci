@@ -12,7 +12,7 @@ const words = [
 	},
 	{
 		word: 'DYNIA',
-		image: 'dynia.png',
+		image: 'dynia.svg',
 		letters: ['D', 'Y', 'N', 'I', 'A'],
 	},
 	{
