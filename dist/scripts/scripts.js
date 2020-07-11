@@ -36,6 +36,16 @@ const words = [
 		letters: ['Z', 'O', 'M', 'B', 'I'],
 	},
 ]
+
+let result = localStorage.getItem('result')
+const resultBox = document.querySelector('.points')
+
+if (!result) {
+	localStorage.setItem('result', 0)
+	resultBox.textContent = 0
+}
+result >= 0 ? (resultBox.textContent = result) : (resultBox.textContent = 0)
+
 const speak = (text) => {
 	var msg = new SpeechSynthesisUtterance(text)
 	var voices = window.speechSynthesis.getVoices()
@@ -99,6 +109,18 @@ const checkButton = () => {
 	})
 }
 
+const getPrize = () => {
+	alert('You get a prozak!')
+}
+
+const checkResult = (result) => {
+	resultBox.textContent = result
+	if (result === 5) {
+		getPrize()
+	}
+	return
+}
+
 function finalButton(nr) {
 	const btn = document.querySelector('#check-btn')
 	btn.addEventListener('click', function () {
@@ -110,11 +132,17 @@ function finalButton(nr) {
 		} else {
 			if (blanks.textContent === words[nr].word) {
 				speak('Gratulacje! Jesteś świetny!')
+				result++
+				localStorage.setItem('result', result)
+				checkResult(result)
 				setTimeout(() => {
 					location.reload()
 				}, 3000)
 			} else {
+				result >= 0 ? result-- : (result = 0)
+				localStorage.setItem('result', result)
 				speak('Ojej, coś się pokręciło. Spróbuj przestawić niektóre literki.')
+				checkResult(result)
 			}
 		}
 	})

@@ -1,5 +1,6 @@
 .game {
 	display: flex;
+	position: relative;
 	flex-flow: column;
 	align-items: center;
 	justify-content: space-around;
@@ -98,5 +99,14 @@
 				padding: 8px 15px 10px 16px;
 			}
 		}
+	}
+	.points {
+		position: fixed;
+		bottom: 0;
+		left: auto;
+		right: auto;
+		font-family: 'Sister Solid';
+		color: palevioletred;
+		font-size: 75px;
 	}
 }
